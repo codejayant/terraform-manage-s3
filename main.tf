@@ -7,6 +7,7 @@ data "aws_caller_identity" "my_account" {}
 resource "aws_s3_bucket" "my_bucket" {
   bucket = "my-s3-bucket-${data.aws_caller_identity.my_account.account_id}"
   region = var.region
+  acl = "public-read"
 
   versioning {
     enabled = true
