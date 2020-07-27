@@ -38,6 +38,25 @@ resource "aws_s3_bucket" "my_bucket" {
   }
 }
 
+resource "aws_s3_bucket_policy" "my_bucket_policy" {
+  bucket = aws_s3_bucket.my_bucket.id
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "MyBucketPolicy",
+  "Statement": [
+    {
+      "Sid": "IPAllow",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.my_bucket.bucket}/*"
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_s3_bucket_object" "readme_file" {
   bucket = aws_s3_bucket.my_bucket.bucket
   key = "files/readme.txt"
