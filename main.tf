@@ -51,6 +51,9 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
       "Principal": "*",
       "Action": "s3:*",
       "Resource": "arn:aws:s3:::${aws_s3_bucket.my_bucket.bucket}/*"
+      "Condition": {
+        "IpAddress": {"aws.SourceIp": "4.4.4.4/32"}
+      }
     }
   ]
 }
