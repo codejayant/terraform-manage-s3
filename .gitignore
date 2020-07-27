@@ -1,0 +1,9 @@
+# Intellij related directory and files
+.idea
+
+# Terraform related directory and files
+.terraform
+
+terraform.tfstate
+terraform.tfstate.backup
+
